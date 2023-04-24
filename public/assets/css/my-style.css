@@ -1,0 +1,95 @@
+@font-face {
+    font-family: "Noto Sans Lao";
+    src: url("/fonts/NotoSansLao-Regular.woff") format("woff2"),
+        url("/fonts/NotoSansLao-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "Noto Sans Lao", Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.my-text li a {
+    font-size: 15px !important;
+}
+
+.my-text {
+    font-size: 15px !important;
+}
+
+.nav-link {
+    font-size: 14px !important;
+}
+
+table.dataTable tbody td {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+#image_preview {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.my-table tbody td {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.tab-font {
+    font-size: 16px;
+}
+
+.my-background {
+    background-image: linear-gradient(
+            to bottom,
+            rgb(57, 97, 255, 0.5),
+            rgb(22, 39, 105, 0.5)
+        ),
+        url("/assets/images/blue.jpg");
+    width: 100%;
+    background-size: cover;
+}
+
+.header-title {
+    font-size: 18px !important;
+}
+
+.card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1rem;
+    text-align: center;
+    transition: 0.3s background;
+    border-top: 1px solid #e6e8e9;
+    flex: 1;
+    color: inherit;
+    font-weight: 500;
+}
+
+.card-btn:not(:first-child) {
+    border-left: 1px solid #e6e8e9;
+}
+
+.thesis-title {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .thesis-title {
+        max-width: 100px;
+    }
+}

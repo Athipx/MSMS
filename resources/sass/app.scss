@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+@font-face {
+    font-family: 'Noto Sans Lao';
+    src: url('/fonts/NotoSansLao-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

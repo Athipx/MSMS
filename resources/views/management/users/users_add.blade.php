@@ -1,0 +1,218 @@
+@extends('layouts.master')
+
+@section('content')
+    <title>ພາບລວມລະບົບ</title>
+
+    <div class="page-content">
+
+        <!-- Page-Title -->
+        <div class="page-title-box">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h4 class="page-title mb-1">ເພີ່ມຜູ້ໃຊ້</h4>
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="#">ຜູ້ໃຊ້ງານລະບົບ</a></li>
+                            <li class="breadcrumb-item active">ເພີ່ມຜູ້ໃຊ້</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+        <div class="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div>
+                                    <a href="{{ route('users.view') }}" class="btn btn-light btn-rounded btn-sm mb-1"><i
+                                            class="fas fa-arrow-left"></i>
+                                        ກັບຄືນ</a>
+                                    <hr>
+                                </div>
+                                <form method="post" action="{{ route('users.store') }}" class="needs-validation"
+                                    novalidate="" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <div class="row">
+                                                <div class="col-md-3"
+                                                    style="display:flex; flex-direction: row; justify-content: center;">
+                                                    <div class="rounded-circle" id="image_preview"></div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="fname_lo">ຊື່ແທ້ ພາສາລາວ</label>
+                                                                <div>
+                                                                    <input name="fname_lo"
+                                                                        class="form-control @error('fname_lo') is-invalid @enderror"
+                                                                        type="text" id="fname_lo"
+                                                                        placeholder="ປ້ອນຊື່ແທ້...">
+                                                                    @error('fname_lo')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="lname_lo">ນາມສະກຸນ ພາສາລາວ</label>
+                                                                <div>
+                                                                    <input name="lname_lo"
+                                                                        class="form-control @error('lname_lo') is-invalid @enderror"
+                                                                        type="text" id="lname_lo"
+                                                                        placeholder="ປ້ອນຊື່ແທ້...">
+                                                                    @error('lname_lo')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fname_en">ຊື່ແທ້ ພາສາອັງກິດ</label>
+                                                                <div>
+                                                                    <input name="fname_en"
+                                                                        class="form-control @error('fname_en') is-invalid @enderror"
+                                                                        type="text" id="fname_en"
+                                                                        placeholder="ປ້ອນຊື່ແທ້...">
+                                                                    @error('fname_en')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="lname_en">ນາມສະກຸນ ພາສາອັງກິດ</label>
+                                                                <div>
+                                                                    <input name="lname_en"
+                                                                        class="form-control @error('lname_en') is-invalid @enderror"
+                                                                        type="text" id="lname_en"
+                                                                        placeholder="ປ້ອນຊື່ແທ້...">
+                                                                    @error('lname_en')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="username">ຊື່ຜູ້ໃຊ້ (Username)</label>
+                                                                <div>
+                                                                    <input id="username" name="username"
+                                                                        class="form-control @error('username') is-invalid @enderror"
+                                                                        type="text" placeholder="ປ້ອນຊື່ຜູ້ໃຊ້...">
+                                                                    @error('username')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>ສິດທິ</label>
+                                                                <div>
+                                                                    <select id="role" name="role"
+                                                                        class="form-control">
+                                                                        <option value="admin">ຜູ້ຄຸ້ມຄອງລະບົບ</option>
+                                                                        <option value="coordinator">ຜູ້ປະສານງານ</option>
+                                                                        <option value="headUnit">ຫົວໜ້າໜ່ວຍວິຊາ</option>
+                                                                        <option value="headDept">ຫົວໜ້າພາກວິຊາ</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>ສະຖານະ</label>
+                                                                <div>
+                                                                    <select id="status" name="status"
+                                                                        class="form-control">
+                                                                        <option value="active">ເປີດໃຊ້ງານ</option>
+                                                                        <option value="inactive">ປິດໃຊ້ງານ</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="email">ອີເມວ</label>
+                                                                <div>
+                                                                    <input id="email" name="email"
+                                                                        class="form-control @error('email') is-invalid @enderror"
+                                                                        type="email" placeholder="ປ້ອນອີເມວ...">
+                                                                    @error('email')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="password">ລະຫັດຜ່ານ</label>
+                                                                <div style="position: relative;">
+                                                                    <input name="password"
+                                                                        class="form-control  @error('email') is-invalid @enderror"
+                                                                        type="password" placeholder="ປ້ອນລະຫັດຜ່ານ..."
+                                                                        id="password">
+                                                                    <i class="fas fa-eye" id="togglePassword"
+                                                                        style="position:absolute; right:3%; top:35%; cursor: pointer;"></i>
+                                                                    @error('password')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>ຮູບໂປຣໄຟລ</label>
+                                                                <div>
+                                                                    <div>
+                                                                        <input name="profile"
+                                                                            class="form-control @error('profile') is-invalid @enderror"
+                                                                            type="file" id="profile_image">
+                                                                        @error('profile')
+                                                                            <div class="invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-lg" type="submit" style="float: right;"><i
+                                            class="fas fa-save mr-2"></i> ບັນທຶກ</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- end page-content-wrapper -->
+    </div>
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+    </script>
+@endsection
