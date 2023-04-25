@@ -11,7 +11,7 @@ class MajorController extends Controller
 {
     public function MajorsView()
     {
-        $data = Major::where('deleted', false)->orderBy('id', 'desc')->paginate(9);
+        $data = Major::where('deleted', false)->orderBy('id', 'desc')->paginate(12);
         $trash = Major::where('deleted', true)->count();
         return view('management.majors.majors', compact('data', 'trash'));
     }

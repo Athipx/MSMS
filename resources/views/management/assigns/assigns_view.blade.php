@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ການຮຽນ-ສອນ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('assign.add') }}" class="btn btn-light btn-rounded dropdown-toggle"
@@ -52,7 +52,6 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-
                                 <form method="GET" action="{{ route('assigns.view') }}" id="filter-form">
                                     <div class="row">
                                         <div class="col-md-5">
@@ -98,9 +97,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                <div>
                                     <a href="{{ route('assigns.trash') }}" class="btn btn-light btn-rounded btn-sm mb-1">
-                                        {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a>
+                                        {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                        class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                class="text-danger">*</span>
+                                            ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
                                     <hr>
                                 </div>
                                 <table id="datatable" class="table dt-responsive nowrap"
@@ -138,13 +140,14 @@
                                                             <i class="fas fa-eye"></i>
                                                         </a>
                                                         <a href="{{ route('assign.edit', $row->id) }}" type="button"
-                                                            class="btn btn-outline-secondary btn-sm waves-effect waves-light"
+                                                            class="btn btn-outline-secondary btn-sm waves-effect waves-light {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}"
                                                             data-toggle="tooltip" data-placement="top" title="ແກ້ໄຂຂໍ້ມູນ">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="{{ route('assign.remove', $row->id) }}" type="button"
-                                                            class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="ລຶບ" id="remove">
+                                                            class="btn btn-outline-danger btn-sm {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}"
+                                                            data-toggle="tooltip" data-placement="top" title="ລຶບ"
+                                                            id="remove">
                                                             <i class="mdi mdi-trash-can"></i>
                                                         </a>
                                                     </div>

@@ -22,7 +22,7 @@
                             <li class="breadcrumb-item active">ນັກສຶກສາ</li>
                         </ol>
                     </div>
-                    <div
+                    {{-- <div
                         class="col-md-4 {{ in_array(Auth::user()->role, ['teacher', 'headUnit', 'headDept']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
@@ -30,6 +30,21 @@
                                     type="button">
                                     <i class="fas fa-user-plus mr-1"></i> ເພີ່ມນັກສຶກສາ
                                 </a>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div
+                        class="col-md-4 {{ in_array(Auth::user()->role, ['teacher', 'headUnit', 'headDept']) ? 'd-none' : '' }}">
+                        <div class="float-right d-none d-md-block">
+                            <div class="dropdown">
+                                <button class="btn btn-light btn-rounded dropdown-toggle" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user-plus mr-1"></i> ເພີ່ມນັກສຶກສາ
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
+                                    <a class="dropdown-item" href="{{ route('students.add') }}">ເພີ່ມລາຍບຸກຄົນ</a>
+                                    <a class="dropdown-item" href="{{ route('students.importPage') }}">Import ນັກສຶກສາ</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,9 +60,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                <div>
                                     <a href="{{ route('students.trash') }}" class="btn btn-light btn-rounded btn-sm mb-1">
-                                        {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a>
+                                        {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                        class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                class="text-danger">*</span>
+                                            ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
                                     <hr>
                                 </div>
                                 <table id="datatable" class="table dt-responsive nowrap"

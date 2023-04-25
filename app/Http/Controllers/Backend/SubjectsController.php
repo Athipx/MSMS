@@ -13,7 +13,7 @@ class SubjectsController extends Controller
 {
     public function SubjectsView(Request $request)
     {
-        $data = Subject::where('deleted', false)->orderBy('id', 'desc')->paginate(9);
+        $data = Subject::where('deleted', false)->orderBy('id', 'desc')->paginate(12);
         $trash = Subject::where('deleted', true)->count();
         $majors = Major::where('deleted', false)->get();
 

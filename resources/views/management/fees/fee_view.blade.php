@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ຊຳລະຄ່າທຳນຽມ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('fees.add') }}" type="button"
@@ -124,7 +124,9 @@
                                             <th>ປະເພດຄ່າທຳນຽມ</th>
                                             <th>ສະຖານະການຊຳລະ</th>
                                             <th>ວັນທີຊຳລະ</th>
-                                            <th></th>
+                                            <th
+                                                class="{{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -157,8 +159,8 @@
                                                             <i class="mdi mdi-eye"></i>
                                                         </a>
                                                         <a href="{{ route('fee.edit', $item->stdfeeId) }}" type="button"
-                                                            class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="ແກ້ໄຂຂໍ້ມູນ">
+                                                            class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}"
+                                                            data-toggle="tooltip" data-placement="top" title="ແກ້ໄຂຂໍ້ມູນ">
                                                             <i class="mdi mdi-pencil"></i>
                                                         </a>
                                                     </div>

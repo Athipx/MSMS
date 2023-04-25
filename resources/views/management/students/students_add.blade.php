@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>ພາບລວມລະບົບ</title>
+    <title>ເພີ່ມນັກສຶກສາ</title>
 
     <div class="page-content">
 
@@ -10,9 +10,10 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="page-title mb-1">ເພີ່ມນັກສຶກສາ</h4>
+                        <h4 class="page-title mb-1">ເພີ່ມນັກສຶກສາລາຍບຸກຄົນ</h4>
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="#">ຜູ້ໃຊ້ງານລະບົບ</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('students.view') }}">ຜູ້ໃຊ້ງານລະບົບ</a></li>
                             <li class="breadcrumb-item active">ເພີ່ມນັກສຶກສາ</li>
                         </ol>
                     </div>
@@ -28,8 +29,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="#" class="btn btn-light btn-rounded btn-sm mb-1"
-                                    onclick="window.history.back();">
+                                <a href="{{ route('students.view') }}" class="btn btn-light btn-rounded btn-sm mb-1">
                                     <i class="fas fa-arrow-left mr-2"></i>ກັບຄືນ
                                 </a>
                                 <hr>

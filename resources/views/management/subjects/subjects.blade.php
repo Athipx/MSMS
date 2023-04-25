@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ວິຊາຮຽນ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <button type="button" class="btn btn-light btn-rounded waves-effect waves-light"
@@ -87,28 +87,6 @@
         <div class="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    {{-- <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>ຄົ້ນຫາ</h5>
-                                <form action="">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <select name="major_id" id="major_id" class="form-control">
-                                                <option value="">--ສະແດງທັງໝົດ--</option>
-                                                @foreach ($major as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->major }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-primary w-100">ຄົ້ນຫາ</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
@@ -129,11 +107,13 @@
                                     </div>
                                 @enderror
                                 <div>
-
-                                    <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                    <div>
                                         <a href="{{ route('subjects.trash') }}"
                                             class="btn btn-light btn-rounded btn-sm mb-1">
-                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a>
+                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                            class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                    class="text-danger">*</span>
+                                                ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
                                         <hr>
                                     </div>
                                     <div class="row">
@@ -153,7 +133,8 @@
                                                         <b>{{ $item->subject_id }}</b> |
                                                         <b>{{ $item->credit }}</b> ໜ່ວຍກິດ
                                                     </p>
-                                                    <div class="mt-3">
+                                                    <div
+                                                        class="mt-3 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                                                         {{-- <button type="button"
                                                             class="btn btn-outline-secondary btn-sm waves-effect waves-light"
                                                             data-toggle="modal"

@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ຊຳລະຄ່າຮຽນ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('tutitions.add') }}" type="button"
@@ -144,8 +144,8 @@
                                                             <i class="mdi mdi-eye"></i>
                                                         </a>
                                                         <a href="{{ route('tutition.edit', $row->id) }}" type="button"
-                                                            class="btn btn-outline-secondary btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="ແກ້ໄຂຂໍ້ມູນ">
+                                                            class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}"
+                                                            data-toggle="tooltip" data-placement="top" title="ແກ້ໄຂຂໍ້ມູນ">
                                                             <i class="mdi mdi-pencil"></i>
                                                         </a>
                                                     </div>

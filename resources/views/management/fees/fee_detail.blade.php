@@ -23,7 +23,7 @@
                             <li class="breadcrumb-item active">ລາຍລະອຽດການຊຳລະຄ່າທຳນຽມ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('fee.edit', $data->id) }}"

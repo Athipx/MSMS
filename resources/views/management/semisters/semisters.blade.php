@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ພາກການສຶກສາ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <button type="button" class="btn btn-light btn-rounded waves-effect waves-light"
@@ -74,7 +74,7 @@
                                 @enderror
                                 <div>
 
-                                    <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                    <div>
                                         <a href="{{ route('semisters.trash') }}"
                                             class="btn btn-light btn-rounded btn-sm mb-1">
                                             {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a>
@@ -93,7 +93,8 @@
                                                             <h3 class="mt-2" style="color: #3051d3;">{{ $item->semister }}
                                                             </h3>
                                                         </div>
-                                                        <div>
+                                                        <div
+                                                            class="{{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                                                             <button type="button"
                                                                 class="btn btn-outline-secondary btn-sm waves-effect waves-light"
                                                                 data-toggle="modal"

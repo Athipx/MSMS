@@ -12,7 +12,7 @@ class SemisterController extends Controller
 {
     public function SemistersView()
     {
-        $data = Semister::where('deleted', false)->orderBy('id', 'desc')->paginate(9);
+        $data = Semister::where('deleted', false)->orderBy('id', 'desc')->paginate(12);
         $trash = Semister::where('deleted', true)->count();
         return view('management.semisters.semisters', compact('data', 'trash'));
     }

@@ -11,7 +11,7 @@ class GenerationController extends Controller
 {
     public function GenView()
     {
-        $data = Generation::where('deleted', false)->orderBy('id', 'desc')->paginate(9);
+        $data = Generation::where('deleted', false)->orderBy('id', 'desc')->paginate(12);
         $trash = Generation::where('deleted', true)->get();
         return view('management.generations.generations', compact('data', 'trash'));
     }

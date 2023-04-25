@@ -29,21 +29,6 @@
                         <span>ພາບລວມລະບົບ</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <div class="d-inline-block icons-sm mx-1">
-                            <i class="fas fa-users" style="color: #3051d3;"></i>
-                        </div>
-                        <span>ຜູ້ໃຊ້ງານລະບົບ</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('students.view') }}">ນັກສຶກສາ</a></li>
-                        <li><a href="{{ route('teachers.view') }}">ອາຈານ</a></li>
-                        <li><a href="{{ route('users.view') }}">ຜູ້ໃຊ້ອື່ນໆ</a></li>
-                    </ul>
-                </li>
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <div class="d-inline-block icons-sm mx-1">

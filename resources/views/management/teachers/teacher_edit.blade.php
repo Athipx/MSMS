@@ -10,15 +10,14 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="page-title mb-1">ເພີ່ມນັກອາຈານ</h4>
+                        <h4 class="page-title mb-1">ແກ້ໄຂຂໍ້ມູນອາຈານ</h4>
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="#">ຜູ້ໃຊ້ງານລະບົບ</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('teachers.view') }}">ອາຈານ</a></li>
-                            <li class="breadcrumb-item active">ເພີ່ມນັກອາຈານ</li>
+                            <li class="breadcrumb-item active">ແກ້ໄຂຂໍ້ມູນອາຈານ</li>
                         </ol>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- end page title end breadcrumb -->

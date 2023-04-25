@@ -25,7 +25,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-3">
-                        <a class="card" href="{{ route('students.view') }}">
+                        <div class="card">
                             <div class="card-body">
                                 <h5 class="header-title mb-4">ນັກສຶກສາທັງໝົດ</h5>
                                 <div class="media">
@@ -37,55 +37,53 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="col-xl-3">
-                        <a class="card" href="{{ route('teachers.view') }}">
+                        <div class="card">
                             <div class="card-body">
-                                <h5 class="header-title mb-4">ອາຈານ</h5>
+                                <h5 class="header-title mb-4">ບໍ່ທັນຊຳລະຄ່າທຳນຽມ</h5>
                                 <div class="media">
                                     <div class="media-body">
-                                        <h4>{{ count($allTeachers) }}</h4>
+                                        <h4>{{ count($allUnpaidFees) }}</h4>
                                     </div>
                                     <div dir="ltr" class="ml-2">
-                                        <i class="fas fa-chalkboard-teacher" style="font-size: 30px;"></i>
+                                        <i class="fas fa-exclamation-circle" style="font-size: 30px;"></i>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="col-xl-3">
-                        <a class="card" href="{{ route('users.view') }}">
+                        <div class="card">
                             <div class="card-body">
-                                <h5 class="header-title mb-4">ຜູ້ໃຊ້ລະບົບທັງໝົດ</h5>
+                                <h5 class="header-title mb-4">ບໍ່ທັນຊຳລະຄ່າຮຽນ</h5>
                                 <div class="media">
                                     <div class="media-body">
-                                        <h4>{{ count($allUsers) }}</h4>
+                                        <h4>{{ count($allUnpaidTutitions) }}</h4>
                                     </div>
                                     <div dir="ltr" class="ml-2">
-                                        <i class="fas fa-users" style="font-size: 30px;"></i>
+                                        <i class="fas fa-exclamation-circle" style="font-size: 30px;"></i>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="col-xl-3">
-                        <a class="card" href="{{ route('theses.view') }}">
+                        <div class="card">
                             <div class="card-body">
-                                <h5 class="header-title mb-4">ວິທະຍານິພົນທັງໝົດ</h5>
+                                <h5 class="header-title mb-4">ຜ່ອນຊຳລະຄ່າຮຽນ</h5>
                                 <div class="media">
                                     <div class="media-body">
-                                        <h4>{{ count($allTheses) }}</h4>
+                                        <h4>{{ count($allInstallments) }}</h4>
                                     </div>
                                     <div dir="ltr" class="ml-2">
-                                        <i class="fas fa-book" style="font-size: 30px;"></i>
+                                        <i class="fas fa-money-bill" style="font-size: 30px;"></i>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
-
-
                 </div>
                 <!-- end row -->
 

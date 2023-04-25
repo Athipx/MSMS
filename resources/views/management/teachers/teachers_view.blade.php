@@ -38,9 +38,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                <div>
                                     <a href="{{ route('teachers.trash') }}" class="btn btn-light btn-rounded btn-sm mb-1">
-                                        {{ $countTrash }} ຖັງຂີ້ເຫຍື້ອ</a>
+                                        {{ $countTrash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                        class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                class="text-danger">*</span>
+                                            ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
                                     <hr>
                                 </div>
                                 <table id="datatable" class="table dt-responsive nowrap"

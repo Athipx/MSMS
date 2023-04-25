@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('student_id')->unique()->nullable();
-            $table->unsignedBigInteger('gen_id');
-            $table->unsignedBigInteger('major_id');
+            $table->unsignedBigInteger('gen_id')->nullable();
+            $table->unsignedBigInteger('major_id')->nullable();
             $table->enum('gender', ['male', 'female'])->default('male');
             $table->date('dob')->nullable();
             $table->date('begin_date')->nullable();

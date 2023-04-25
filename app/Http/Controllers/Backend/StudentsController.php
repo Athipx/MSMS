@@ -11,6 +11,8 @@ use App\Models\Generation;
 use App\Models\Major;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use App\Imports\StudentsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentsController extends Controller
 {
@@ -380,6 +382,28 @@ class StudentsController extends Controller
 
         $notification = array(
             'message' => 'ປ່ຽນລະຫັດຜ່ານສຳເລັດ',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function StudentsImport()
+    {
+        return view('management.students.students_import');
+    }
+
+    public function import(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xlsx,csv,xls'
+        ]);
+
+        $file = $request->file('file');
+        Excel::import(new StudentsImport, $file);
+
+        $notification = array(
+            'message' => 'Import ຂໍ້ມູນນັກສຶກສາສຳເລັດ',
             'alert-type' => 'success'
         );
 

@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ສາຂາວິຊາ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <button type="button" class="btn btn-light btn-rounded waves-effect waves-light"
@@ -73,9 +73,12 @@
                                     </div>
                                 @enderror
                                 <div>
-                                    <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                    <div>
                                         <a href="{{ route('majors.trash') }}" class="btn btn-light btn-rounded btn-sm mb-1">
-                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a>
+                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                            class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                    class="text-danger">*</span>
+                                                ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
                                         <hr>
                                     </div>
                                     <div class="row">
@@ -86,7 +89,8 @@
                                                         style="height: 50px;">
                                                         <h5 class="card-title" style="margin: 0; padding:0;">
                                                             {{ $item->major }}</h5>
-                                                        <div>
+                                                        <div
+                                                            class="{{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                                                             <button
                                                                 class="btn btn-outline-secondary btn-sm waves-effect waves-light mt-2"
                                                                 data-toggle="modal"

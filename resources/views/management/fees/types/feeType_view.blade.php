@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item active">ປະເພດຄ່າທຳນຽມ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <button type="button" class="btn btn-light btn-rounded waves-effect waves-light"
@@ -90,11 +90,13 @@
                                     </div>
                                 @enderror
                                 <div>
-
-                                    <div class="{{ Auth::user()->role !== 'admin' ? 'invisible' : 'visible' }}">
+                                    <div>
                                         <a href="{{ route('feeType.trash') }}"
                                             class="btn btn-light btn-rounded btn-sm mb-1">
-                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a>
+                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                            class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                    class="text-danger">*</span>
+                                                ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
                                         <hr>
                                     </div>
                                     <div class="row">
@@ -109,7 +111,9 @@
                                                         <th>ລາຍລະອຽດ</th>
                                                         <th>ວັນທີແກ້ໄຂຫຼ້າສຸດ</th>
                                                         <th>ຜູ້ແກ້ໄຂຫຼ້າສຸດ</th>
-                                                        <th></th>
+                                                        <th
+                                                            class="{{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -121,7 +125,8 @@
                                                             <td>{{ $item->description }}</td>
                                                             <td>{{ date('d-m-Y', strtotime($item->updated_at)) }}</td>
                                                             <td>{{ $item->editor->fname_lo }}</td>
-                                                            <td>
+                                                            <td
+                                                                class="{{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}">
                                                                 <div class="btn-group" role="group">
                                                                     <button type="button"
                                                                         class="btn btn-outline-secondary btn-sm"

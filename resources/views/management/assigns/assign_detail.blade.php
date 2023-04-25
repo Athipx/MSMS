@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item active">ລາຍລະອຽດການຮຽນ-ການສອນ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('assign.edit', $data->id) }}"
