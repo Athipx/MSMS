@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>ພາບລວມລະບົບ</title>
+    <title>ບັນດາວິທະຍານິພົນ</title>
 
     <div class="page-content">
 

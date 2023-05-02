@@ -6,7 +6,7 @@
         $type = ['proposal' => 'ປ້ອງກັນຫົວຂໍ້ (Proposal)', 'thesis' => 'ປ້ອງກັນບົດຈົບ'];
     @endphp
 
-    <title>ພາບລວມລະບົບ</title>
+    <title>ລາຍລະອຽດວິທະຍານິພົນ</title>
 
     <div class="page-content">
 

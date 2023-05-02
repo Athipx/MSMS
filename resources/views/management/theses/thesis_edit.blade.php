@@ -6,7 +6,7 @@
         $gender = ['male' => 'ທ້າວ', 'female' => 'ນາງ'];
     @endphp
 
-    <title>ພາບລວມລະບົບ</title>
+    <title>ເພີ່ມຂໍ້ມູນວິທະຍານິພົນ</title>
 
     <div class="page-content">
 
