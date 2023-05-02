@@ -56,6 +56,7 @@ class AssignsController extends Controller
             ->when($gen_id, function ($query, $gen_id) {
                 return $query->where('gen_id', $gen_id);
             })
+            ->where('deleted', false)
             ->get();
 
 

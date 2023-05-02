@@ -39,7 +39,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 5%;">ລະຫັດ</th>
-                                            <th style="width: 20%;">ອາຈານສອນ</th>
+                                            {{-- <th style="width: 20%;">ອາຈານສອນ</th> --}}
                                             <th>ວິຊາ</th>
                                             <th>ສາຂາວິຊາ</th>
                                             <th>ຮຸ່ນການສຶກສາ</th>
@@ -55,12 +55,12 @@
                                         @foreach ($data as $key => $row)
                                             <tr>
                                                 <td>{{ $row->id }}</td>
-                                                <td><img class="rounded-circle mr-2"
+                                                {{-- <td><img class="rounded-circle mr-2"
                                                         src="{{ !empty($row->teacher->user->profile) ? asset($row->teacher->user->profile) : asset('assets/images/profiles/profile.jpg') }}"
                                                         width="70" height="70">
                                                     {{ $row->teacher->user->fname_lo }}
                                                     {{ $row->teacher->user->lname_lo }}
-                                                </td>
+                                                </td> --}}
                                                 <td>{{ $row->subject->subject }}</td>
                                                 <td>{{ $row->major->major }}</td>
                                                 <td>{{ $row->gen->gen }}</td>

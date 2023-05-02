@@ -165,6 +165,7 @@ class StudentFeesController extends Controller
         $data = StudentFee::find($id);
         $data->status = $request->status;
         $data->due_date = $request->due_date;
+        $data->modified_by = Auth::user()->id;
         $data->save();
 
         $notification = array(

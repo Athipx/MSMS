@@ -179,6 +179,7 @@ class TutitionsController extends Controller
         $data->status = $request->status;
         $data->due_date = $request->due_date ? date('Y-m-d', strtotime($request->due_date)) : null;
         $data->comment = $request->comment;
+        $data->modified_by = Auth::user()->id;
         $data->save();
 
         $notification = array(
