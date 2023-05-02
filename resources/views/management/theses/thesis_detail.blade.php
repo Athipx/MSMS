@@ -22,16 +22,6 @@
                             <li class="breadcrumb-item active">ລາຍລະອຽດວິທະຍານິພົນ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
-                        <div class="float-right d-none d-md-block">
-                            <div class="dropdown">
-                                <a href="{{ route('thesis.edit', $theses->id) }}"
-                                    class="btn btn-light btn-rounded dropdown-toggle" type="button">
-                                    <i class="fas fa-edit mr-1"></i> ແກ້ໄຂຂໍ້ມູນ
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -47,7 +37,6 @@
                                     <a href="{{ route('theses.view') }}" class="btn btn-light btn-rounded btn-sm mb-1"><i
                                             class="fas fa-arrow-left"></i>
                                         ກັບຄືນ</a>
-                                    <hr>
                                 </div>
                                 @if ($errors->any())
                                     <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
@@ -225,15 +214,20 @@
                                                         </td>
                                                         <td>{{ $row->comment }}</td>
                                                         <td>
-                                                            {{-- <button type="button"
-                                                                class="btn btn-outline-secondary btn-sm waves-effect waves-light"
-                                                                data-toggle="modal"
-                                                                data-target="#myModal-{{ $row->id }}">
-                                                                <i class="fas fa-eye"></i>
-                                                            </button> --}}
-                                                            <a href="{{ route('log.detail', $row->id) }}"
-                                                                class="btn btn-outline-secondary btn-sm waves-effect waves-light"><i
-                                                                    class="fas fa-eye"></i></a>
+                                                            <div class="btn-group" role="group">
+                                                                <a href="{{ route('log.detail', $row->id) }}"
+                                                                    type="button" class="btn btn-outline-secondary btn-sm"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="ເບິ່ງລາຍລະອຽດ">
+                                                                    <i class="mdi mdi-eye"></i>
+                                                                </a>
+                                                                <a href="{{ route('log.edit', $row->id) }}" type="button"
+                                                                    class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['headUnit', 'admin']) ? 'd-none' : '' }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="ແກ້ໄຂຂໍ້ມູນ">
+                                                                    <i class="mdi mdi-pencil"></i>
+                                                                </a>
+                                                            </div>
                                                         </td>
                                                     </tr>
 

@@ -5,7 +5,7 @@
         $type = ['proposal' => 'ປ້ອງກັນຫົວຂໍ້ (Proposal)', 'thesis' => 'ປ້ອງກັນບົດຈົບ'];
     @endphp
 
-    <title>ພາບລວມລະບົບ</title>
+    <title>ລາຍລະອຽດການສອບຫົວຂໍ້</title>
 
     <div class="page-content">
 
@@ -14,24 +14,25 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="page-title mb-1">ລາຍການສອບຫົວຂໍ້
+                        <h4 class="page-title mb-1">ລາຍລະອຽດການສອບຫົວຂໍ້
                         </h4>
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="#">ວິທະຍານິພົນ</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('theses.view') }}">ບັນດາວິທະຍານິພົນ</a></li>
                             <li class="breadcrumb-item active"><a href="#">ລາຍລະອຽດວິທະຍານິພົນ</a></li>
-                            <li class="breadcrumb-item active">ລາຍການສອບຫົວຂໍ້</li>
+                            <li class="breadcrumb-item active">ລາຍລະອຽດການສອບຫົວຂໍ້</li>
                         </ol>
                     </div>
-                    {{-- <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
-                                <a href="" class="btn btn-light btn-rounded dropdown-toggle" type="button">
+                                <a href="{{ route('log.edit', $data) }}" class="btn btn-light btn-rounded dropdown-toggle"
+                                    type="button">
                                     <i class="fas fa-edit mr-1"></i> ແກ້ໄຂຂໍ້ມູນ
                                 </a>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

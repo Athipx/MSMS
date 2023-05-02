@@ -277,6 +277,8 @@ Route::prefix('theses')->middleware(['auth', 'user-access:admin,headUnit,coordin
 Route::prefix('theses/presentation')->middleware(['auth', 'user-access:admin,headUnit,coordinator,teacher,headDept'])->group(function () {
     Route::post('/store', [ThesisPresentationController::class, 'PresentLogStore'])->name('log.store');
     Route::get('/detail/{id}', [ThesisPresentationController::class, 'PresentLogDetail'])->name('log.detail');
+    Route::get('/edit/{id}', [ThesisPresentationController::class, 'PresentLogEdit'])->name('log.edit');
+    Route::post('/update/{id}', [ThesisPresentationController::class, 'PresentLogUpdate'])->name('log.update');
 });
 
 // Fees Mangement All Routes
