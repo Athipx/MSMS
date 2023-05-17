@@ -45,8 +45,15 @@
                     <form action="{{ route('semister.add') }}" method="post">
                         @csrf
                         <div class="modal-body">
-                            <input name="semister" class="form-control" type="number" id="semister"
-                                placeholder="ປ້ອນເລກພາກ / ເທີມ..." required>
+                            <div class="form-group">
+                                <label for="">ພາກຮຽນ / ເທີມ</label>
+                                <input name="semister" class="form-control" type="number" id="semister"
+                                    placeholder="ປ້ອນເລກພາກ / ເທີມ..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ລາຍລະອຽດ</label>
+                                <textarea class="form-control" name="description" id="" rows="5"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary waves-effect"
@@ -99,7 +106,7 @@
                                                                 class="btn btn-outline-secondary btn-sm waves-effect waves-light"
                                                                 data-toggle="modal"
                                                                 data-target="#myModal-{{ $item->id }}">
-                                                                <i class="fas fa-edit"></i>
+                                                                <i class="mdi mdi-pencil"></i>
                                                             </button>
                                                             <a href="{{ route('semister.remove', $item->id) }}"
                                                                 class="btn btn-outline-danger waves-effect waves-light btn-sm"
@@ -130,9 +137,16 @@
                                                             method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <input name="semister" type="number"
-                                                                    class="form-control"
-                                                                    value="{{ old('semister', $item->semister) }}">
+                                                                <div class="form-group">
+                                                                    <label for="">ພາກຮຽນ / ເທີມ</label>
+                                                                    <input name="semister" type="number"
+                                                                        class="form-control"
+                                                                        value="{{ old('semister', $item->semister) }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">ລາຍລະອຽດ</label>
+                                                                    <textarea class="form-control" name="description" id="" rows="5">{{ old('semister', $item->description) }}</textarea>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button"

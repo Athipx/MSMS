@@ -13,21 +13,21 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('students')->insert([
-            [
-                'user_id' => 2,
-                'student_id' => '227N0029/21',
-                'gen_id' => '10',
-                'major_id' => 'ວິສະວະກຳຊັອບແວ',
-                'gender' => 'male',
-            ],
-            [
-                'user_id' => 3,
-                'student_id' => '227N0023/21',
-                'gen_id' => '10',
-                'major_id' => 'ວິສະວະກຳຊັອບແວ',
-                'gender' => 'female',
-            ],
-        ]);
+        // DB::table('students')->insert([
+        //     [
+        //         'user_id' => 2,
+        //         'student_id' => '227N0029/21',
+        //         'gen_id' => '10',
+        //         'major_id' => '1',
+        //         'gender' => 'male',
+        //     ],
+        //     [
+        //         'user_id' => 3,
+        //         'student_id' => '227N0023/21',
+        //         'gen_id' => '10',
+        //         'major_id' => '1',
+        //         'gender' => 'male',
+        //     ],
+        // ]);
     }
 }

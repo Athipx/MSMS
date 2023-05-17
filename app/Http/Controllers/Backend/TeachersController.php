@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use App\Models\User;
 use App\Models\Major;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TeachersController extends Controller
 {
@@ -86,12 +87,14 @@ class TeachersController extends Controller
             $user->role = $request->role;
             $user->password = bcrypt($request->password);
             $user->profile = $full_path;
+            $user->phone = $request->phone;
+            $user->modified_by = Auth::user()->id;
             $user->save();
 
             $teacher->user_id = $user->id;
             $teacher->major_id = $request->major;
-            $teacher->phone = $request->phone;
             $teacher->position = $request->position;
+            $teacher->expert = $request->expert;
             $teacher->save();
 
             //ຍ້າຍຮູບ
@@ -113,12 +116,14 @@ class TeachersController extends Controller
             $user->email = $request->email;
             $user->role = $request->role;
             $user->password = bcrypt($request->password);
+            $user->phone = $request->phone;
+            $user->modified_by = Auth::user()->id;
             $user->save();
 
             $teacher->user_id = $user->id;
             $teacher->major_id = $request->major;
-            $teacher->phone = $request->phone;
             $teacher->position = $request->position;
+            $teacher->expert = $request->expert;
             $teacher->save();
 
             $notification = array(
@@ -191,12 +196,14 @@ class TeachersController extends Controller
             $user->role = $request->role;
             $user->password = bcrypt($request->password);
             $user->profile = $full_path;
+            $user->phone = $request->phone;
+            $user->modified_by = Auth::user()->id;
             $user->save();
 
             $teacher = Teacher::where('user_id', $user->id)->first();
             $teacher->major_id = $request->major;
-            $teacher->phone = $request->phone;
             $teacher->position = $request->position;
+            $teacher->expert = $request->expert;
             $teacher->save();
 
             //ຍ້າຍຮູບ
@@ -219,12 +226,14 @@ class TeachersController extends Controller
             $user->email = $request->email;
             $user->role = $request->role;
             $user->password = bcrypt($request->password);
+            $user->phone = $request->phone;
+            $user->modified_by = Auth::user()->id;
             $user->save();
 
             $teacher = Teacher::where('user_id', $user->id)->first();
             $teacher->major_id = $request->major;
-            $teacher->phone = $request->phone;
             $teacher->position = $request->position;
+            $teacher->expert = $request->expert;
             $teacher->save();
 
             $notification = array(

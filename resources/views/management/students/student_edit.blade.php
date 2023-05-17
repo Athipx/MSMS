@@ -343,7 +343,7 @@
                                                                 class="form-control @error('phone') is-invalid @enderror"
                                                                 type="number" id="phone"
                                                                 placeholder="ປ້ອນເບີໂທລະສັບ..."
-                                                                value="{{ old('phone', $editData->phone) }}">
+                                                                value="{{ old('phone', $editData->user->phone) }}">
                                                             @error('phone')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}

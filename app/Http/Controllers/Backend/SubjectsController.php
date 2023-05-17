@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectsController extends Controller
 {
-    public function SubjectsView(Request $request)
+    public function SubjectsView()
     {
-        $data = Subject::where('deleted', false)->orderBy('id', 'desc')->paginate(12);
         $trash = Subject::where('deleted', true)->count();
         $majors = Major::where('deleted', false)->get();
+
+        $data = Subject::where('deleted', false)->orderBy('id', 'desc')->get();
 
         foreach ($data as $major) {
             $subject_major = DB::table('subject_major')
@@ -29,23 +31,6 @@ class SubjectsController extends Controller
         }
 
         return view('management.subjects.subjects', compact('data', 'trash', 'majors'));
-
-        // $major_id = $request->input('major_id');
-
-        // $select_subject = DB::table('subjects')
-        //     ->join('majors', 'subjects.major_id', '=', 'majors.id')
-        //     ->select('subjects.id as id', 'subjects.subject_id as subject_id', 'subjects.subject as subject', 'subjects.credit as credit', 'majors.major as major')
-        //     ->where('subjects.deleted', false);
-
-        // if ($major_id) {
-        //     $select_subject->where('majors.id', $major_id);
-        // }
-
-        // $data = $select_subject->paginate(10); // 10 records per page
-        // $major = Major::all();
-        // $trash = Subject::where('deleted', true)->count();
-
-        // return view('management.subjects.subjects', compact('data', 'trash'));
     }
 
     public function SubjectAdd(Request $request)
@@ -72,6 +57,7 @@ class SubjectsController extends Controller
         $subject->subject = $request->subject;
         $subject->description = $request->description;
         $subject->credit = $request->credit;
+        $subject->modified_by = Auth::user()->id;
         $subject->save();
 
         $majors = $request->major;
@@ -125,6 +111,7 @@ class SubjectsController extends Controller
         $subject->subject = $request->subject;
         $subject->description = $request->description;
         $subject->credit = $request->credit;
+        $subject->modified_by = Auth::user()->id;
         $subject->save();
 
         $majors = $request->major;
@@ -147,6 +134,7 @@ class SubjectsController extends Controller
     {
         $class = Subject::find($id);
         $class->deleted = true;
+        $class->modified_by = Auth::user()->id;
         $class->save();
 
         $notification = array(
@@ -160,6 +148,7 @@ class SubjectsController extends Controller
     {
         $class = Subject::find($id);
         $class->deleted = false;
+        $class->modified_by = Auth::user()->id;
         $class->save();
 
         $notification = array(
@@ -168,23 +157,4 @@ class SubjectsController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-
-    // public function SubjectFilter(Request $request)
-    // {
-    //     $major_id = $request->input('major_id');
-
-    //     $select_subject = DB::table('subjects')
-    //         ->join('majors', 'subjects.major_id', '=', 'majors.id')
-    //         ->select('subjects.id as id', 'subjects.subject as subject', 'subjects.credit as credit', 'majors.major as major')
-    //         ->where('subjects.deleted', false);
-
-    //     if ($major_id) {
-    //         $select_subject->where('majors.id', $major_id);
-    //     }
-
-    //     $data = $select_subject->paginate(10); // 10 records per page
-    //     $major = Major::all();
-
-    //     return view('management.subjects.subjects2', compact('data', 'major'));
-    // }
 }

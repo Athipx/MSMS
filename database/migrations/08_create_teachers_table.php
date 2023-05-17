@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('major_id');
             $table->string('phone')->nullable();
             $table->string('position')->nullable();
+            $table->string('expert')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('major_id')->references('id')->on('majors');
             $table->unsignedBigInteger('modified_by')->nullable();

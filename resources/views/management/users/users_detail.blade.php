@@ -69,6 +69,10 @@
                                                         <td>{{ $UserData->email }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <th scope="row" style="width: 30%;">ເບີໂທລະສັບ:</th>
+                                                        <td>{{ $UserData->phone }}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <th scope="row" style="width: 30%;">ສິດທິ</th>
                                                         <td>
                                                             @if ($UserData->role == 'coordinator')

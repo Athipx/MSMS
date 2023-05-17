@@ -107,43 +107,43 @@
                                     </div>
                                 @enderror
                                 <div>
-                                    <div>
-                                        <a href="{{ route('subjects.trash') }}"
-                                            class="btn btn-light btn-rounded btn-sm mb-1">
-                                            {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
-                                            class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
-                                                    class="text-danger">*</span>
-                                                ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
-                                        <hr>
-                                    </div>
-                                    <div class="row">
+                                    <a href="{{ route('subjects.trash') }}" class="btn btn-light btn-rounded btn-sm mb-1">
+                                        {{ $trash }} ຖັງຂີ້ເຫຍື້ອ</a> <b
+                                        class="{{ Auth::user()->role == 'admin' ? 'invisible' : '' }}"><i><span
+                                                class="text-danger">*</span>
+                                            ຖ້າທ່ານຕ້ອງການກູ້ຄືນຂໍ້ມູນ, ກະລຸນາພົວພັນກັບຜູ້ຄຸ້ມຄອງລະບົບ</i></b>
+                                    <hr>
+                                </div>
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>ລະຫັດວິຊາ</th>
+                                            <th>ຊື່ວິຊາຮຽນ</th>
+                                            <th>ສາຂາວິຊາ</th>
+                                            <th>ໜ່ວຍກິດ</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         @foreach ($data as $item)
-                                            <div class="col-md-4 mb-3">
-                                                <div class="card h-100 text-center justify-content-center p-3"
-                                                    style="background: #f4f8f9;">
-                                                    <h5 class="card-title text-primary mb-2"
-                                                        style="margin: 0; padding:0; line-height: 1.6;">
-                                                        {{ $item->subject }}</h5>
+                                            <tr>
+                                                <td>{{ $item->subject_id }}</td>
+                                                <td>{{ $item->subject }}</td>
+                                                <td>
                                                     <p>
                                                         @foreach ($item->subject_major as $i)
                                                             {{ $i->major }} </br>
                                                         @endforeach
                                                     </p>
-                                                    <p style="padding: 0; margin: 0;">ລະຫັດວິຊາ:
-                                                        <b>{{ $item->subject_id }}</b> |
-                                                        <b>{{ $item->credit }}</b> ໜ່ວຍກິດ
-                                                    </p>
+                                                </td>
+                                                <td>{{ $item->credit }}</td>
+                                                <td>
                                                     <div
                                                         class="mt-3 {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}">
-                                                        {{-- <button type="button"
-                                                            class="btn btn-outline-secondary btn-sm waves-effect waves-light"
-                                                            data-toggle="modal"
-                                                            data-target="#myModal-{{ $item->id }}">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button> --}}
                                                         <a href="{{ route('subject.edit', $item->id) }}"
                                                             class="btn btn-outline-secondary btn-sm waves-effect waves-light">
-                                                            <i class="fas fa-edit"></i>
+                                                            <i class="mdi mdi-pencil"></i>
                                                         </a>
                                                         <a href="{{ route('subject.remove', $item->id) }}"
                                                             class="btn btn-outline-danger waves-effect waves-light btn-sm"
@@ -151,98 +151,16 @@
                                                             <i class="fas fa-trash-alt"></i>
                                                         </a>
                                                     </div>
-                                                </div>
-                                                {{-- <div class="col-md-2">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-secondary btn-sm waves-effect waves-light"
-                                                                    data-toggle="modal"
-                                                                    data-target="#myModal-{{ $item->id }}">
-                                                                    <i class="fas fa-edit"></i>
-                                                                </button>
-                                                                <a href="{{ route('subject.remove', $item->id) }}"
-                                                                    class="btn btn-outline-danger waves-effect waves-light btn-sm"
-                                                                    id="remove">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </a>
-                                                            </div> --}}
-                                            </div>
-                                            <!-- sample modal content -->
-                                            {{-- <div id="myModal-{{ $item->id }}" class="modal fade" tabindex="-1"
-                                                role="dialog" aria-labelledby="myModalLabel-{{ $item->id }}"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title mt-0" id="myModalLabel">ແກ້ໄຂຂໍ້ມູນ
-                                                                ວິຊາ {{ $item->subject }}
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="{{ route('subject.update', ['id' => $item->id]) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <div class="form-group">
-                                                                        <label for="subject_id">ລະຫັດວິຊາ</label>
-                                                                        <input name="subject_id" class="form-control"
-                                                                            type="text" id="subject_id"
-                                                                            placeholder="ປ້ອນລະຫັດວິຊາ..." required
-                                                                            value="{{ old('subject_id', $item->subject_id) }}">
-                                                                    </div>
-                                                                    <label for="subject">ຊື່ວິຊາຮຽນ</label>
-                                                                    <input name="subject" class="form-control"
-                                                                        type="text" id="subject"
-                                                                        placeholder="ປ້ອນຊື່ວິຊາຮຽນ..." required
-                                                                        value="{{ old('subject', $item->subject) }}">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="major">ສາຂາວິຊາ</label>
-                                                                    <select name="major[]" class="selectize" multiple required>
-                                                                        <option value="">ເລືອກ ສາຂາວິຊາ...</option>
-                                                                        @foreach ($majors as $major)
-                                                                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                                                                        @endforeach
-                                                                        @foreach ($majors as $item)
-                                                                            <option value="{{ $item->id }}" @if (in_array($item->id, $selectedMajorIds)) selected @endif>{{ $item->major }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="credit">ຈຳນວນໜ່ວຍກິດ</label>
-                                                                    <input name="credit" class="form-control"
-                                                                        type="number" id="credit"
-                                                                        placeholder="ປ້ອນຈຳນວນໜ່ວຍກິດ..." required
-                                                                        value="{{ old('credit', $item->credit) }}">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="description">ລາຍລະອຽດ</label>
-                                                                    <textarea name="description" class="form-control" id="description" rows="3">{{ old('description', $item->description) }}</textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-secondary waves-effect"
-                                                                    data-dismiss="modal">ຍົກເລີກ</button>
-                                                                <button type="submite"
-                                                                    class="btn btn-primary waves-effect waves-light">ບັນທຶກ</button>
-                                                            </div>
-                                                        </form>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal --> --}}
+                                                </td>
+                                            </tr>
                                         @endforeach
-                                    </div>
-                                    <div>
-                                        {{ $data->links() }}
-                                    </div>
-                                </div>
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
                     </div> <!-- end col -->
+
                 </div> <!-- end row -->
 
             </div>

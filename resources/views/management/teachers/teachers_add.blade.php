@@ -230,6 +230,10 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label for="">ຄວາມຊ່ຽວຊານ</label>
+                                                                <textarea class="form-control" name="expert" id="" rows="5"></textarea>
+                                                            </div>
                                                             <input type="hidden" name="role" value="teacher">
                                                         </div>
                                                     </div>

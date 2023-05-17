@@ -39,8 +39,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <a href="{{ route('teachers.view') }}" class="btn btn-light btn-rounded btn-sm mb-1"><i
-                                            class="fas fa-arrow-left"></i>
+                                    <a href="{{ route('teacher.dashboard') }}"
+                                        class="btn btn-light btn-rounded btn-sm mb-1"><i class="fas fa-arrow-left"></i>
                                         ກັບຄືນ</a>
                                     <hr>
                                 </div>
@@ -74,6 +74,12 @@
                                                     <tr>
                                                         <th scope="row" style="width: 30%;">ຕຳແໜ່ງ:</th>
                                                         <td>{{ $data->position }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" style="width: 30%;">ຄວາມຊ່ຽວຊານ:</th>
+                                                        <td>
+                                                            <pre>{{ $data->expert }}</pre>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row" style="width: 30%;">ອີເມວ:</th>

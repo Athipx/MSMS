@@ -194,7 +194,7 @@
                                                                         class="form-control @error('phone') is-invalid @enderror"
                                                                         type="number" id="phone"
                                                                         placeholder="ປ້ອນເບີໂທລະສັບ..."
-                                                                        value="{{ old('phone', $editData->phone) }}">
+                                                                        value="{{ old('phone', $editData->user->phone) }}">
                                                                     @error('position')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
@@ -216,6 +216,10 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">ຄວາມຊ່ຽວຊານ</label>
+                                                                <textarea class="form-control" name="expert" id="" rows="5">{{ old('expert', $editData->expert) }}</textarea>
                                                             </div>
                                                             <input type="hidden" name="role" value="teacher">
                                                         </div>

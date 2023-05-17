@@ -45,4 +45,33 @@ class TutitionInstallmentsController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function InstallmentEdit($id)
+    {
+        $data = TutitionInstallment::find($id);
+        return view('management.tutitions.installment_edit', compact('data'));
+    }
+
+    public function InstallmentUpdate(Request $request, $id)
+    {
+        $data = TutitionInstallment::find($id);
+        $data->tutition_id = $request->tutition_id;
+        $data->installment = $request->installment;
+        $data->amount = $request->amount;
+        $data->txt_amount = $request->txt_amount;
+        $data->status = $request->status;
+        $data->due_date = $request->due_date ? date('Y-m-d', strtotime($request->due_date)) : null;
+        $data->comment = $request->comment;
+        $data->modified_by = Auth::user()->id;
+        $data->save();
+
+        $notification = array(
+            'message' => 'ເພີ່ມຂໍ້ມູນສຳເລັດ',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('tutition.detail', $data->tutition_id)->with($notification);
+
+        // dd($request->all());
+    }
 }

@@ -45,8 +45,15 @@
                     <form action="{{ route('major.add') }}" method="post">
                         @csrf
                         <div class="modal-body">
-                            <input name="major" class="form-control @error('major') is-invalid @enderror" type="text"
-                                id="major" placeholder="ປ້ອນສາຂາວິຊາ..." required>
+                            <div class="form-group">
+                                <label for="">ຊື່ສາຂາວິຊາ</label>
+                                <input name="major" class="form-control @error('major') is-invalid @enderror"
+                                    type="text" id="major" placeholder="ປ້ອນສາຂາວິຊາ..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ລາຍລະອຽດ</label>
+                                <textarea class="form-control" name="description" id="" rows="5"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary waves-effect"
@@ -95,7 +102,7 @@
                                                                 class="btn btn-outline-secondary btn-sm waves-effect waves-light mt-2"
                                                                 data-toggle="modal"
                                                                 data-target="#myModal-{{ $item->id }}">
-                                                                <i class="fas fa-edit"></i>
+                                                                <i class="mdi mdi-pencil"></i>
                                                             </button>
                                                             <a href="{{ route('major.remove', $item->id) }}"
                                                                 class="btn btn-outline-danger btn-sm waves-effect waves-light mt-2"
@@ -126,8 +133,16 @@
                                                             method="post">
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <input name="major" type="text" class="form-control"
-                                                                    value="{{ old('major', $item->major) }}">
+                                                                <div class="form-group">
+                                                                    <label for="">ຊື່ສາຂາວິຊາ</label>
+                                                                    <input name="major" type="text"
+                                                                        class="form-control"
+                                                                        value="{{ old('major', $item->major) }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">ລາຍລະອຽດ</label>
+                                                                    <textarea class="form-control" name="description" id="" rows="5">{{ old('description', $item->description) }}</textarea>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button"

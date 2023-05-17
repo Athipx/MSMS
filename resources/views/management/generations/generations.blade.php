@@ -110,7 +110,7 @@
                                                                 class="btn btn-outline-secondary btn-sm waves-effect waves-light"
                                                                 data-toggle="modal"
                                                                 data-target="#myModal-{{ $item->id }}">
-                                                                <i class="fas fa-edit"></i>
+                                                                <i class="mdi mdi-pencil"></i>
                                                             </button>
                                                             <a href="{{ route('gen.remove', $item->id) }}"
                                                                 class="btn btn-outline-danger waves-effect waves-light btn-sm"

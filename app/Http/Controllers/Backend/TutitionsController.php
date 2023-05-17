@@ -186,8 +186,8 @@ class TutitionsController extends Controller
             'message' => 'ແກ້ໄຂຂໍ້ມູນສຳເລັດ',
             'alert-type' => 'success'
         );
-
-        // return redirect()->route('tutition.detail', $data->id)->with($notification);
         return redirect()->back()->with($notification);
+
+        // dd($request->all());
     }
 }

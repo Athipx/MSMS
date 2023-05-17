@@ -4,7 +4,6 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Generation;
@@ -99,6 +98,7 @@ class StudentsController extends Controller
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->profile = $full_path;
+            $user->phone = $request->phone;
             $user->modified_by = Auth::user()->id;
             $user->save();
 
@@ -111,7 +111,6 @@ class StudentsController extends Controller
             $student->begin_date = $request->begin_date ? date('Y-m-d', strtotime($request->begin_date)) : null;
             $student->graduated_date = $request->graduated_date ? date('Y-m-d', strtotime($request->graduated_date)) : null;
             $student->dob = $request->dob ? date('Y-m-d', strtotime($request->dob)) : null;
-            $student->phone = $request->phone ?? null;
             $student->born_village = $request->born_village ?? null;
             $student->born_district = $request->born_district ?? null;
             $student->born_province = $request->born_province ?? null;
@@ -146,6 +145,7 @@ class StudentsController extends Controller
             $user->status = $request->status;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
+            $user->phone = $request->phone;
             $user->modified_by = Auth::user()->id;
             $user->save();
 
@@ -158,7 +158,6 @@ class StudentsController extends Controller
             $student->begin_date = $request->begin_date ? date('Y-m-d', strtotime($request->begin_date)) : null;
             $student->graduated_date = $request->graduated_date ? date('Y-m-d', strtotime($request->graduated_date)) : null;
             $student->dob = $request->dob ? date('Y-m-d', strtotime($request->dob)) : null;
-            $student->phone = $request->phone;
             $student->born_village = $request->born_village;
             $student->born_district = $request->born_district;
             $student->born_province = $request->born_province;
@@ -243,6 +242,8 @@ class StudentsController extends Controller
             $user->username = $request->username;
             $user->status = $request->status;
             $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->modified_by = Auth::user()->id;
             $user->profile = $full_path;
             $user->save();
 
@@ -255,7 +256,6 @@ class StudentsController extends Controller
             $student->begin_date = $request->begin_date ? date('Y-m-d', strtotime($request->begin_date)) : null;
             $student->graduated_date = $request->graduated_date ? date('Y-m-d', strtotime($request->graduated_date)) : null;
             $student->dob = $request->dob ? date('Y-m-d', strtotime($request->dob)) : null;
-            $student->phone = $request->phone ?? null;
             $student->born_village = $request->born_village ?? null;
             $student->born_district = $request->born_district ?? null;
             $student->born_province = $request->born_province ?? null;
@@ -289,6 +289,8 @@ class StudentsController extends Controller
             $user->username = $request->username;
             $user->status = $request->status;
             $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->modified_by = Auth::user()->id;
             $user->save();
 
             $student = Student::where('user_id', $user->id)->first();
@@ -300,7 +302,6 @@ class StudentsController extends Controller
             $student->begin_date = $request->begin_date ? date('Y-m-d', strtotime($request->begin_date)) : null;
             $student->graduated_date = $request->graduated_date ? date('Y-m-d', strtotime($request->graduated_date)) : null;
             $student->dob = $request->dob ? date('Y-m-d', strtotime($request->dob)) : null;
-            $student->phone = $request->phone;
             $student->born_village = $request->born_village;
             $student->born_district = $request->born_district;
             $student->born_province = $request->born_province;
@@ -395,7 +396,7 @@ class StudentsController extends Controller
 
     public function import(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'file' => 'required|mimes:xlsx,csv,xls'
         ]);
 
@@ -408,5 +409,21 @@ class StudentsController extends Controller
         );
 
         return redirect()->back()->with($notification);
+
+        // $request->validate([
+        //     'file' => 'required|mimes:xlsx,csv,xls'
+        // ]);
+
+        // try {
+        //     Excel::import(new StudentsImport, $request->file('file'));
+        //     $notification = array(
+        //         'message' => 'Import ຂໍ້ມູນນັກສຶກສາສຳເລັດ',
+        //         'alert-type' => 'success'
+        //     );
+
+        //     return redirect()->back()->with($notification);
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with('error', 'Error importing students: ' . $e->getMessage());
+        // }
     }
 }

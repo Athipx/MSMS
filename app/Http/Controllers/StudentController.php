@@ -18,7 +18,7 @@ use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function test()
     {
         $user_id = Auth::user()->id;
         $data = Student::where('user_id', $user_id)->firstOrFail();
@@ -66,27 +66,109 @@ class StudentController extends Controller
             ->where('users.id', $user_id)
             ->get();
 
-        $thesis = Thesis::where('student_id', $data->id)->firstOrFail();
+        $thesis = Thesis::where('student_id', $data->id)->first();
 
-        $teachers = Teacher::where('deleted', false)->get();
-        $logs = PresentationLog::where('thesis_id', $thesis->id)->get();
+        if ($thesis !== null) {
+            $logs = PresentationLog::where('thesis_id', $thesis->id)->get();
 
-        $co_advisers = DB::table('thesis_advisers')
-            ->select('users.*')
-            ->join('teachers', 'thesis_advisers.teacher_id', 'teachers.id')
-            ->join('users', 'teachers.user_id', 'users.id')
-            ->where('thesis_advisers.thesis_id', $thesis->id)
-            ->get();
-
-        foreach ($logs as $log) {
-            $committees = DB::table('committees')
-                ->select('users.fname_lo', 'users.lname_lo')
-                ->join('teachers', 'committees.teacher_id', 'teachers.id')
+            $co_advisers = DB::table('thesis_advisers')
+                ->select('users.*')
+                ->join('teachers', 'thesis_advisers.teacher_id', 'teachers.id')
                 ->join('users', 'teachers.user_id', 'users.id')
-                ->where('committees.presentation_log_id', $log->id)
+                ->where('thesis_advisers.thesis_id', $thesis->id)
                 ->get();
 
-            $log->committees = $committees;
+            foreach ($logs as $log) {
+                $committees = DB::table('committees')
+                    ->select('users.fname_lo', 'users.lname_lo')
+                    ->join('teachers', 'committees.teacher_id', 'teachers.id')
+                    ->join('users', 'teachers.user_id', 'users.id')
+                    ->where('committees.presentation_log_id', $log->id)
+                    ->get();
+
+                $log->committees = $committees;
+            }
+        } else {
+            $logs = null;
+            $co_advisers = null;
+        }
+
+        return view('student.test', compact('data', 'grades_term1', 'grades_term2', 'grades_term3', 'grades_term4', 'thesis', 'logs', 'co_advisers'));
+    }
+
+    public function StudentView()
+    {
+        $user_id = Auth::user()->id;
+        $data = Student::where('user_id', $user_id)->firstOrFail();
+        $grades_term1 = DB::table('student_grades')
+            ->select('subjects.*', 'student_grades.*')
+            ->join('assigns', 'student_grades.assign_id', '=', 'assigns.id')
+            ->join('semisters', 'assigns.semister_id', 'semisters.id')
+            ->join('subjects', 'assigns.subject_id', '=', 'subjects.id')
+            ->join('students', 'student_grades.student_id', 'students.id')
+            ->join('users', 'students.user_id', 'users.id')
+            ->where('semisters.semister', 1)
+            ->where('users.id', $user_id)
+            ->get();
+
+        $grades_term2 = DB::table('student_grades')
+            ->select('subjects.*', 'student_grades.*')
+            ->join('assigns', 'student_grades.assign_id', '=', 'assigns.id')
+            ->join('semisters', 'assigns.semister_id', 'semisters.id')
+            ->join('subjects', 'assigns.subject_id', '=', 'subjects.id')
+            ->join('students', 'student_grades.student_id', 'students.id')
+            ->join('users', 'students.user_id', 'users.id')
+            ->where('semisters.semister', 2)
+            ->where('users.id', $user_id)
+            ->get();
+
+        $grades_term3 = DB::table('student_grades')
+            ->select('subjects.*', 'student_grades.*')
+            ->join('assigns', 'student_grades.assign_id', '=', 'assigns.id')
+            ->join('semisters', 'assigns.semister_id', 'semisters.id')
+            ->join('subjects', 'assigns.subject_id', '=', 'subjects.id')
+            ->join('students', 'student_grades.student_id', 'students.id')
+            ->join('users', 'students.user_id', 'users.id')
+            ->where('semisters.semister', 3)
+            ->where('users.id', $user_id)
+            ->get();
+
+        $grades_term4 = DB::table('student_grades')
+            ->select('subjects.*', 'student_grades.*')
+            ->join('assigns', 'student_grades.assign_id', '=', 'assigns.id')
+            ->join('semisters', 'assigns.semister_id', 'semisters.id')
+            ->join('subjects', 'assigns.subject_id', '=', 'subjects.id')
+            ->join('students', 'student_grades.student_id', 'students.id')
+            ->join('users', 'students.user_id', 'users.id')
+            ->where('semisters.semister', 4)
+            ->where('users.id', $user_id)
+            ->get();
+
+        $thesis = Thesis::where('student_id', $data->id)->first();
+
+        if ($thesis !== null) {
+            $logs = PresentationLog::where('thesis_id', $thesis->id)->get();
+
+            $co_advisers = DB::table('thesis_advisers')
+                ->select('users.*')
+                ->join('teachers', 'thesis_advisers.teacher_id', 'teachers.id')
+                ->join('users', 'teachers.user_id', 'users.id')
+                ->where('thesis_advisers.thesis_id', $thesis->id)
+                ->get();
+
+            foreach ($logs as $log) {
+                $committees = DB::table('committees')
+                    ->select('users.fname_lo', 'users.lname_lo')
+                    ->join('teachers', 'committees.teacher_id', 'teachers.id')
+                    ->join('users', 'teachers.user_id', 'users.id')
+                    ->where('committees.presentation_log_id', $log->id)
+                    ->get();
+
+                $log->committees = $committees;
+            }
+        } else {
+            $logs = null;
+            $co_advisers = null;
         }
 
         return view('student.index', compact('data', 'grades_term1', 'grades_term2', 'grades_term3', 'grades_term4', 'thesis', 'logs', 'co_advisers'));

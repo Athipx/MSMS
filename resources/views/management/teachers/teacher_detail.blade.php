@@ -77,12 +77,18 @@
                                                         <td>{{ $data->position }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <th scope="row" style="width: 30%;">ຄວາມຊ່ຽວຊານ:</th>
+                                                        <td>
+                                                            <pre>{{ $data->expert }}</pre>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <th scope="row" style="width: 30%;">ອີເມວ:</th>
                                                         <td>{{ $data->user->email }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row" style="width: 30%;">ເບີໂທລະສັບ:</th>
-                                                        <td>{{ $data->phone }}</td>
+                                                        <td>{{ $data->user->phone }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row" style="width: 30%;">ສິດທິ</th>

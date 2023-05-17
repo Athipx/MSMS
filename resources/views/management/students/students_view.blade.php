@@ -146,7 +146,6 @@
                     </div> <!-- end col -->
                 </div> <!-- end row -->
 
-
                 {{-- <div class="row row-cards mt-2">
                     @foreach ($studentData as $key => $row)
                         <div class="col-md-6 col-xl-3">

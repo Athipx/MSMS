@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Major;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class MajorController extends Controller
 {
@@ -31,6 +32,8 @@ class MajorController extends Controller
         // dd($request->all());
         $major = new Major;
         $major->major = $request->major;
+        $major->description = $request->description;
+        $major->modified_by = Auth::user()->id;
         $major->save();
 
         $notification = array(
@@ -55,6 +58,8 @@ class MajorController extends Controller
 
         $major = Major::find($id);
         $major->major = $request->major;
+        $major->description = $request->description;
+        $major->modified_by = Auth::user()->id;
         $major->save();
 
         $notification = array(
@@ -68,6 +73,7 @@ class MajorController extends Controller
     {
         $major = Major::find($id);
         $major->deleted = true;
+        $major->modified_by = Auth::user()->id;
         $major->save();
 
         $notification = array(
@@ -87,6 +93,7 @@ class MajorController extends Controller
     {
         $major = Major::find($id);
         $major->deleted = false;
+        $major->modified_by = Auth::user()->id;
         $major->save();
 
         $notification = array(

@@ -86,7 +86,7 @@
                                                     <div class="col-md-9">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <div class="form-group">
+                                                                {{-- <div class="form-group">
                                                                     <label for="student_id">ລະຫັດນັກສຶກສາ</label>
                                                                     <div>
                                                                         <input name="student_id"
@@ -100,7 +100,7 @@
                                                                             </div>
                                                                         @enderror
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                                 <div class="form-group">
                                                                     <label for="fname_lo">ຊື່ແທ້
                                                                         ພາສາລາວ</label>
@@ -200,10 +200,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
+                                                                {{-- <div class="form-group">
                                                                     <label>ຮຸ່ນການສຶກສາ<span
                                                                             class="text-danger">*</span></label>
                                                                     <div>
@@ -216,8 +213,10 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
+                                                                </div> --}}
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                {{-- <div class="form-group">
                                                                     <label>ສາຂາວິຊາ</label>
                                                                     <div>
                                                                         <select id="major" name="major"
@@ -230,7 +229,7 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                                 <div class="form-group">
                                                                     <label>ສະຖານະບັນຊີໃຊ້ງານ<span
                                                                             class="text-danger">*</span></label>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\AssignsController;
 use App\Http\Controllers\Backend\ClassroomsController;
 use App\Http\Controllers\Backend\DefaultController;
@@ -49,9 +50,6 @@ use App\Models\Assign;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Auth::routes();
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/student_grades', [StudentGradesController::class, 'index'])->name('student_grades');
 Route::get('/subject2', [SubjectsController::class, 'SubjectFilter']);
@@ -61,16 +59,21 @@ Route::get('/subjectList/{majorId}', function ($majorId) {
     return response()->json($subjects);
 });
 
+
 Route::get('/studentgrades/filter', [StudentGradesController::class, 'filterStudents'])->name('studentgrades.filter');
+Route::post('/std_register/', [RegisterController::class, 'RegisterStore'])->name('register.store');
+
+Auth::routes();
+
 
 //admin Routes
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/profile', [AdminController::class, 'ProfileDetail'])->name('admin.profile');
     Route::get('/admin/profile/edit', [AdminController::class, 'ProfileEdit'])->name('admin.profileEdit');
     Route::post('/admin/profile/update', [AdminController::class, 'ProfileUpdate'])->name('admin.profileUpdate');
     Route::post('/admin/update_pwd', [AdminController::class, 'UpdatePwd'])->name('admin.updatePwd');
-    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/dashbard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/test', [AdminController::class, 'test']);
     Route::get('/users/trash', [UsersController::class, 'UsersTrash'])->name('users.trash');
     Route::get('/users/restore/{id}', [UsersController::class, 'UsersRestore'])->name('users.restore');
@@ -95,12 +98,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 });
 
 //student Routes
-Route::middleware(['auth', 'user-access:student'])->group(function () {
-    Route::get('/student/dashbard', [StudentController::class, 'index'])->name('student.dashboard');
-    Route::get('/student/profile/edit', [StudentController::class, 'ProfileEdit'])->name('studentProfile.edit');
-    Route::post('/student/profile/update', [StudentController::class, 'ProfileUpdate'])->name('studentProfile.update');
-    Route::get('/student/change_pwd', [StudentController::class, 'ChangePwd'])->name('student.changePwd');
-    Route::post('/student/update_pwd', [StudentController::class, 'UpdatePwd'])->name('student.updatePwd');
+Route::prefix('student')->middleware(['auth', 'user-access:student'])->group(function () {
+    Route::get('/test', [StudentController::class, 'test'])->name('student.test');
+    Route::get('/dashboard', [StudentController::class, 'StudentView'])->name('student.dashboard');
+    Route::get('/profile/edit', [StudentController::class, 'ProfileEdit'])->name('studentProfile.edit');
+    Route::post('/profile/update', [StudentController::class, 'ProfileUpdate'])->name('studentProfile.update');
+    Route::get('/change_pwd', [StudentController::class, 'ChangePwd'])->name('student.changePwd');
+    Route::post('/update_pwd', [StudentController::class, 'UpdatePwd'])->name('student.updatePwd');
 });
 
 //teacher Routes
@@ -109,7 +113,7 @@ Route::middleware(['auth', 'user-access:teacher'])->group(function () {
     Route::get('/teacher/profile/edit', [TeacherController::class, 'ProfileEdit'])->name('teacher.profileEdit');
     Route::post('/teacher/profile/update', [TeacherController::class, 'ProfileUpdate'])->name('teacher.profileUpdate');
     Route::post('/teacher/update_pwd', [TeacherController::class, 'UpdatePwd'])->name('teacher.updatePwd');
-    Route::get('/teacher/dashbard', [TeacherController::class, 'index'])->name('teacher.dashboard');
+    Route::get('/teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
     //Assigns
     Route::get('/teacher/assigns/view', [TeacherController::class, 'AssignsView'])->name('teacher.assigns.view');
     Route::get('/teacher/assign/detail/{id}', [TeacherController::class, 'AssignDetail'])->name('teacher.assign.detail');
@@ -141,7 +145,7 @@ Route::middleware(['auth', 'user-access:coordinator'])->group(function () {
 
 //headUnit Routes
 Route::middleware(['auth', 'user-access:headUnit'])->group(function () {
-    Route::get('/headUnit/dashbard', [HeadUnitController::class, 'index'])->name('headUnit.dashboard');
+    Route::get('/headUnit/dashboard', [HeadUnitController::class, 'index'])->name('headUnit.dashboard');
     Route::get('/headUnit/profile', [HeadUnitController::class, 'ProfileDetail'])->name('headUnit.profile');
     Route::get('/headUnit/profile/edit', [HeadUnitController::class, 'ProfileEdit'])->name('headUnit.profileEdit');
     Route::post('/headUnit/profile/update', [HeadUnitController::class, 'ProfileUpdate'])->name('headUnit.profileUpdate');
@@ -150,7 +154,7 @@ Route::middleware(['auth', 'user-access:headUnit'])->group(function () {
 
 //headDept Routes
 Route::middleware(['auth', 'user-access:headDept'])->group(function () {
-    Route::get('/headDept/dashbard', [HeadDeptController::class, 'index'])->name('headDept.dashboard');
+    Route::get('/headDept/dashboard', [HeadDeptController::class, 'index'])->name('headDept.dashboard');
     Route::get('/headDept/profile', [HeadDeptController::class, 'ProfileDetail'])->name('headDept.profile');
     Route::get('/headDept/profile/edit', [HeadDeptController::class, 'ProfileEdit'])->name('headDept.profileEdit');
     Route::post('/headDept/profile/update', [HeadDeptController::class, 'ProfileUpdate'])->name('headDept.profileUpdate');
@@ -328,4 +332,6 @@ Route::prefix('tutitions')->middleware(['auth', 'user-access:admin,headUnit,coor
     Route::get('/edit/{id}', [TutitionsController::class, 'TutitionEdit'])->name('tutition.edit');
     Route::post('/update/{id}', [TutitionsController::class, 'TutitionUpdate'])->name('tutition.update');
     Route::post('/installment/store', [TutitionInstallmentsController::class, 'InstallmentStore'])->name('installment.store');
+    Route::get('/installment/edit/{id}', [TutitionInstallmentsController::class, 'InstallmentEdit'])->name('installment.edit');
+    Route::post('/installment/update/{id}', [TutitionInstallmentsController::class, 'InstallmentUpdate'])->name('installment.update');
 });

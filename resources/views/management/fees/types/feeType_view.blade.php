@@ -154,8 +154,7 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title mt-0" id="myModalLabel">
-                                                                            ແກ້ໄຂຂໍ້ມູນ
-                                                                            ປະເພດຄ່າທຳນຽມ {{ $item->gen }}
+                                                                            ແກ້ໄຂຂໍ້ມູນປະເພດຄ່າທຳນຽມ
                                                                         </h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
@@ -173,8 +172,7 @@
                                                                                     type="text" id="type"
                                                                                     placeholder="ປ້ອນປະເພດຄ່າທຳນຽມ..."
                                                                                     value="{{ old('type', $item->type) }}"
-                                                                                    required
-                                                                                    {{ $item->type == 'ຄ່າຮຽນ' ? 'disabled' : '' }}>
+                                                                                    required>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="type">ຈຳນວນເງິນ</label>

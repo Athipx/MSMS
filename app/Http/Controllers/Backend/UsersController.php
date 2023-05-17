@@ -74,6 +74,8 @@ class UsersController extends Controller
             $data->email = $request->email;
             $data->password = bcrypt($request->password);
             $data->profile = $full_path;
+            $data->phone = $request->phone;
+            $data->modified_by = Auth::user()->id;
             $data->save();
 
             //ຍ້າຍຮູບ
@@ -95,6 +97,8 @@ class UsersController extends Controller
             $data->status = $request->status;
             $data->email = $request->email;
             $data->password = bcrypt($request->password);
+            $data->phone = $request->phone;
+            $data->modified_by = Auth::user()->id;
             $data->save();
 
             $notification = array(
@@ -170,6 +174,8 @@ class UsersController extends Controller
             $data->role = $request->role;
             $data->status = $request->status;
             $data->email = $request->email;
+            $data->phone = $request->phone;
+            $data->modified_by = Auth::user()->id;
             $data->profile = $full_path;
             $data->save();
 
@@ -198,6 +204,8 @@ class UsersController extends Controller
             $data->role = $request->role;
             $data->status = $request->status;
             $data->email = $request->email;
+            $data->phone = $request->phone;
+            $data->modified_by = Auth::user()->id;
             $data->save();
 
             $notification = array(

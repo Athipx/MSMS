@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Semister;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Auth;
 
 class SemisterController extends Controller
 {
@@ -32,6 +32,8 @@ class SemisterController extends Controller
         // dd($request->all());
         $semister = new Semister;
         $semister->semister = $request->semister;
+        $semister->description = $request->description;
+        $semister->modified_by = Auth::user()->id;
         $semister->save();
 
         $notification = array(
@@ -59,6 +61,8 @@ class SemisterController extends Controller
 
         $semister = Semister::find($id);
         $semister->semister = $request->semister;
+        $semister->description = $request->description;
+        $semister->modified_by = Auth::user()->id;
         $semister->save();
 
         $notification = array(
@@ -72,6 +76,7 @@ class SemisterController extends Controller
     {
         $semister = Semister::find($id);
         $semister->deleted = true;
+        $semister->modified_by = Auth::user()->id;
         $semister->save();
 
         $notification = array(
@@ -91,6 +96,7 @@ class SemisterController extends Controller
     {
         $semister = Semister::find($id);
         $semister->deleted = false;
+        $semister->modified_by = Auth::user()->id;
         $semister->save();
 
         $notification = array(

@@ -142,7 +142,7 @@
                                                         <a href="{{ route('assign.edit', $row->id) }}" type="button"
                                                             class="btn btn-outline-secondary btn-sm waves-effect waves-light {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}"
                                                             data-toggle="tooltip" data-placement="top" title="ແກ້ໄຂຂໍ້ມູນ">
-                                                            <i class="fas fa-edit"></i>
+                                                            <i class="mdi mdi-pencil"></i>
                                                         </a>
                                                         <a href="{{ route('assign.remove', $row->id) }}" type="button"
                                                             class="btn btn-outline-danger btn-sm {{ !in_array(Auth::user()->role, ['admin', 'headUnit']) ? 'd-none' : '' }}"

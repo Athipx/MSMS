@@ -53,10 +53,20 @@
                 <div class="col-xl-5 col-sm-8">
                     <div class="card" style="border-radius: 20px; box-shadow: 0px 0px 100px #ffffff33;">
                         <div class="card-body p-4">
+
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="p-2">
                                 <h5 class="mb-5 text-center text-primary">ເຂົ້າໃຊ້ງານລະບົບ MSMS | CEIT</h5>
 
-                                <form class="form-horizontal" method="POST" action="{{ route('login') }}" novalidate>
+                                <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group mb-4">
                                         <label for="login">ຊື່ຜູ້ໃຊ້ (Username) ຫຼື ອີເມວ</label>
@@ -76,24 +86,24 @@
                                         <div class="col-md-6">
                                             <div class="custom-control custom-checkbox">
                                                 <input class="custom-control-input" type="checkbox" name="remember"
-                                                    id="remember" {{ old('remember') ? 'checked' : '' }} required>
+                                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                 <label class="custom-control-label" for="remember">ຈື່ຂ້ອຍໄວ້</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="text-md-right">
                                                 <a href="auth-recoverpw.html" class="text-muted"><i
                                                         class="mdi mdi-lock"></i> ລືມລະຫັດຜ່ານ?</a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-primary btn-lg btn-block waves-effect waves-light"
                                             type="submit"
                                             style="background: #3051d3 !important; border: none; border-radius: 10px;">ເຂົ້າສູ່ລະບົບ</button>
                                     </div>
-                                    <div class="mt-4 text-center d-none">
-                                        <a href="auth-register.html" class="text-muted"><i
+                                    <div class="mt-4 text-center">
+                                        <a href="{{ route('register') }}" class="text-muted"><i
                                                 class="mdi mdi-account-circle mr-1"></i> ສ້າງບັນຊີຜູ້ໃຊ້</a>
                                     </div>
                                 </form>

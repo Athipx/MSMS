@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <title>ພາບລວມລະບົບ</title>
+    <title>ຖັງຂີ້ເຫຍື້ອ ຫ້ອງຮຽນ</title>
 
     <div class="page-content">
 
@@ -37,14 +37,14 @@
                                 <div>
                                     <div class="row">
                                         @foreach ($trash as $item)
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="card card-body" style="background: #f4f8f9;">
                                                     <div class="d-flex justify-content-between align-items-center"
                                                         style="height: 50px;">
                                                         <div>
-                                                            <h4 class="card-title text-primary mb-3"
+                                                            <h5 class="card-title text-primary mb-3"
                                                                 style="margin: 0; padding:0;">
-                                                                {{ $item->subject }}</h4>
+                                                                {{ $item->subject }}</h5>
                                                             <p style="padding: 0; margin: 0;">ລະຫັດວິຊາ:
                                                                 {{ $item->subject_id }} |
                                                                 {{ $item->credit }} ໜ່ວຍກິດ

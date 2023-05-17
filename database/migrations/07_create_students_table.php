@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->date('begin_date')->nullable();
             $table->date('graduated_date')->nullable();
-            $table->string('phone')->nullable();
             $table->string('born_village')->nullable();
             $table->string('born_district')->nullable();
             $table->enum('born_province', ['ນະຄອນຫຼວງວຽງຈັນ', 'ຜົ້ງສາລີ', 'ຫຼວງນໍ້າທາ', 'ບໍ່ແກ້ວ', 'ອຸດົມໄຊ', 'ໄຊຍະບູລີ', 'ຫົວພັນ', 'ຊຽງຂວາງ', 'ຫຼວງພະບາງ', 'ໄຊສົມບູນ', 'ວຽງຈັນ', 'ບໍລິຄຳໄຊ', 'ຄຳມ່ວນ', 'ສະຫວັນນະເຂດ', 'ສາລະວັນ', 'ຈຳປາສັກ', 'ເຊກອງ', 'ອັດຕະປື'])->default('ນະຄອນຫຼວງວຽງຈັນ');

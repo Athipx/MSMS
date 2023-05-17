@@ -57,6 +57,7 @@
                                         <form action="{{ route('tutition.update', $data->id) }}" method="post">
                                             @csrf
                                             <div class="form-group">
+                                                {{-- <input type="hidden" name="id" value="{{ $data->id }}"> --}}
                                                 <label for="">ສະຖານະການຊຳລະ</label>
                                                 <select name="status" id="" class="form-control">
                                                     <option value="paid"
@@ -82,8 +83,7 @@
                                                 <label for="">ລາຍລະອຽດການຊຳລະ</label>
                                                 <textarea name="comment" id="" rows="5" class="form-control">{{ old('comment', $data->comment) }}</textarea>
                                             </div>
-                                            <button name="submit" type="submit"
-                                                class="btn btn-lg btn-primary mt-4 float-right">
+                                            <button type="submit" class="btn btn-lg btn-primary mt-4 float-right">
                                                 <i class="fas fa-save mr-2"></i>ບັນທຶກ
                                             </button>
                                         </form>

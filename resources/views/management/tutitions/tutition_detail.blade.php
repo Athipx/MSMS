@@ -203,6 +203,15 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ $row->comment }}</td>
+                                                        <td>
+                                                            <a href="{{ route('installment.edit', $row->id) }}"
+                                                                type="button"
+                                                                class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['admin', 'coordinator']) ? 'd-none' : '' }}"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="ແກ້ໄຂຂໍ້ມູນ">
+                                                                <i class="mdi mdi-pencil"></i>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

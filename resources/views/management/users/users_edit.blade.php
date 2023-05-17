@@ -119,9 +119,6 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="username">ຊື່ຜູ້ໃຊ້ (Username)</label>
                                                                 <div>
@@ -136,6 +133,8 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>ສິດທິ</label>
                                                                 <div>
@@ -194,6 +193,20 @@
                                                                         class="form-control @error('email') is-invalid @enderror"
                                                                         type="email" placeholder="ປ້ອນອີເມວ...">
                                                                     @error('email')
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="phone">ເບີໂທລະສັບ</label>
+                                                                <div>
+                                                                    <input value="{{ $editData->phone }}" id="phone"
+                                                                        name="phone"
+                                                                        class="form-control @error('phone') is-invalid @enderror"
+                                                                        type="number" placeholder="ປ້ອນເບີໂທລະສັບ...">
+                                                                    @error('phone')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
                                                                         </div>

@@ -38,7 +38,6 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-
                                 <form method="GET" action="{{ route('fees.view') }}" id="filter-form">
                                     <div class="row">
                                         <div class="col-md-3">
