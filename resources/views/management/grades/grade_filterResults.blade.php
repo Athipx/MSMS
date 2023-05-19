@@ -16,7 +16,8 @@
                             <li class="breadcrumb-item active">ຄະແນນການສຶກສາ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['teacher', 'admin']) ? 'd-none' : '' }}">
+                    <div
+                        class="col-md-4 {{ !in_array(Auth::user()->role, ['teacher', 'admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('grades.add') }}" class="btn btn-light btn-rounded" type="button">
@@ -126,7 +127,7 @@
                                                                 <i class="mdi mdi-eye"></i>
                                                             </a>
                                                             <a href="{{ route('grade.edit', $row->id) }}" type="button"
-                                                                class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['teacher', 'admin']) ? 'd-none' : '' }}"
+                                                                class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['teacher', 'admin', 'headUnit']) ? 'd-none' : '' }}"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="ແກ້ໄຂຂໍ້ມູນ">
                                                                 <i class="mdi mdi-pencil"></i>

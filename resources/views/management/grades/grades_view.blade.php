@@ -16,7 +16,8 @@
                             <li class="breadcrumb-item active">ຄະແນນການສຶກສາ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4 {{ !in_array(Auth::user()->role, ['teacher', 'admin']) ? 'd-none' : '' }}">
+                    <div
+                        class="col-md-4 {{ !in_array(Auth::user()->role, ['teacher', 'admin', 'headUnit']) ? 'd-none' : '' }}">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('grades.add') }}" class="btn btn-light btn-rounded dropdown-toggle"

@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item active">ຖັງຂີ້ເຫຍື້ອ</li>
                         </ol>
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="float-right d-none d-md-block">
                             <div class="dropdown">
                                 <a href="{{ route('users.add') }}" class="btn btn-light btn-rounded dropdown-toggle"
@@ -26,7 +26,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

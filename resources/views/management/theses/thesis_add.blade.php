@@ -186,7 +186,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <button class="btn btn-primary btn-lg" type="submit"><i
+                                    <button class="btn btn-primary btn-lg float-right" type="submit"><i
                                             class="fas fa-save mr-2"></i>ບັນທຶກ</button>
                                 </form>
                             </div>

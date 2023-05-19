@@ -24,7 +24,7 @@
         <div class="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xl-3">
+                    <div class="col-xl-4">
                         <a class="card" href="{{ route('students.view') }}">
                             <div class="card-body">
                                 <h5 class="header-title mb-4">ນັກສຶກສາທັງໝົດ</h5>
@@ -39,7 +39,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-4">
                         <a class="card" href="{{ route('teachers.view') }}">
                             <div class="card-body">
                                 <h5 class="header-title mb-4">ອາຈານ</h5>
@@ -54,22 +54,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-xl-3">
-                        <a class="card" href="{{ route('users.view') }}">
-                            <div class="card-body">
-                                <h5 class="header-title mb-4">ຜູ້ໃຊ້ລະບົບທັງໝົດ</h5>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h4>{{ count($allUsers) }}</h4>
-                                    </div>
-                                    <div dir="ltr" class="ml-2">
-                                        <i class="fas fa-users" style="font-size: 30px;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-4">
                         <a class="card" href="{{ route('theses.view') }}">
                             <div class="card-body">
                                 <h5 class="header-title mb-4">ວິທະຍານິພົນທັງໝົດ</h5>
@@ -94,45 +79,48 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="float-right ml-2">
-                                    <a href="{{ route('fees.view') }}">ເບິ່ງເພີ່ມຕື່ມ</a>
+                                    <a href="{{ route('grades.view') }}">ເບິ່ງເພີ່ມຕື່ມ</a>
                                 </div>
-                                <h5 class="header-title mb-4">ການເຄື່ອນໄຫວຄ່າທຳນຽມຫຼ້າສຸດ</h5>
+                                <h5 class="header-title mb-4">ການເຄື່ອນໄຫວຄະແນນການສຶກສາຫຼ້າສຸດ</h5>
 
                                 <div id="table-responsive">
-                                    <table class="table my-table">
+                                    <table id="datatable" class="table dt-responsive nowrap"
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>ລະຫັດນັກສຶກສາ</th>
                                                 <th>ຊື່-ນາມສະກຸນ ລາວ</th>
                                                 <th>ຮຸ່ນການສຶກສາ</th>
                                                 <th>ສາຂາວິຊາ</th>
-                                                <th>ປະເພດຄ່າທຳນຽມ</th>
-                                                <th>ສະຖານະການຊຳລະ</th>
-                                                <th>ວັນທີຊຳລະ</th>
+                                                <th>ວິຊາ</th>
+                                                <th>ເກຣດ</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($students as $item)
+                                            @foreach ($grades as $key => $row)
                                                 <tr>
+                                                    <td>{{ $row->student_id }}</td>
+                                                    <td>{{ $row->fname }} {{ $row->lname }}</td>
+                                                    <td>{{ $row->gen }}</td>
+                                                    <td>{{ $row->major }}</td>
+                                                    <td>{{ $row->subject }}</td>
+                                                    <td>{{ $row->grade }}</td>
                                                     <td>
-                                                        {{ $item->student_id }}
-                                                        <input type="hidden" name="student_id[]"
-                                                            value="{{ $item->id }}">
-                                                    </td>
-                                                    <td>{{ $item->fname }} {{ $item->lname }}</td>
-                                                    <td>{{ $item->gen }}</td>
-                                                    <td>{{ $item->major }}</td>
-                                                    <td>{{ $item->type }}</td>
-                                                    <td>
-                                                        @if ($item->status == 'paid')
-                                                            <h4><span class="badge badge-success">ຊຳລະແລ້ວ</span>
-                                                            </h4>
-                                                        @else
-                                                            <h4><span class="badge badge-danger">ຍັງບໍ່ທັນຊຳລະ</span>
-                                                            </h4>
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $item->date !== null ? date('d/m/Y', strtotime($item->date)) : '' }}
+                                                        <div class="btn-group" role="group">
+                                                            <a href="{{ route('grade.detail', $row->id) }}" type="button"
+                                                                class="btn btn-outline-secondary btn-sm"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="ເບິ່ງລາຍລະອຽດ">
+                                                                <i class="mdi mdi-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('grade.edit', $row->id) }}" type="button"
+                                                                class="btn btn-outline-secondary btn-sm {{ !in_array(Auth::user()->role, ['teacher', 'admin', 'headUnit']) ? 'd-none' : '' }}"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="ແກ້ໄຂຂໍ້ມູນ">
+                                                                <i class="mdi mdi-pencil"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

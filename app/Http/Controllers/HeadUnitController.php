@@ -29,7 +29,18 @@ class HeadUnitController extends Controller
             ->limit(6)
             ->orderBy('id', 'DESC')
             ->get();
-        return view('headUnit.index', $data, compact('students'));
+        $grades = DB::table('student_grades')
+            ->select('student_grades.id as id', 'subjects.subject as subject', 'students.student_id as student_id', 'generations.gen as gen', 'users.fname_lo as fname', 'users.lname_lo as lname', 'generations.gen as generation', 'majors.major as major', 'student_grades.grade as grade')
+            ->join('students', 'student_grades.student_id', '=', 'students.id')
+            ->join('users', 'students.user_id', '=', 'users.id')
+            ->join('assigns', 'student_grades.assign_id', '=', 'assigns.id')
+            ->join('generations', 'assigns.gen_id', '=', 'generations.id')
+            ->join('majors', 'assigns.major_id', '=', 'majors.id')
+            ->join('subjects', 'assigns.subject_id', '=', 'subjects.id')
+            ->where('student_grades.deleted', false)
+            ->orderBy('student_grades.updated_at', 'desc')
+            ->get();
+        return view('headUnit.index', $data, compact('students', 'grades'));
     }
 
     public function ProfileDetail()
