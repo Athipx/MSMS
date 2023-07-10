@@ -146,7 +146,7 @@
                                                     class="text-danger">*</span></label>
                                             <div>
                                                 <select id="major" name="major_id" class="form-control">
-                                                    @foreach ($majors as $key)
+                                                    @foreach ($major as $key)
                                                         <option value="{{ $key->id }}"
                                                             @if (old('major') == $key->id) selected @endif>
                                                             {{ $key->major }}
@@ -160,7 +160,7 @@
                                                     class="text-danger">*</span></label>
                                             <div>
                                                 <select id="gen" name="gen_id" class="form-control">
-                                                    @foreach ($gens as $key)
+                                                    @foreach ($gen as $key)
                                                         <option value="{{ $key->id }}">
                                                             {{ $key->gen }}</option>
                                                     @endforeach
