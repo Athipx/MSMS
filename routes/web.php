@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\StdRegisterController;
 use App\Http\Controllers\Backend\AssignsController;
 use App\Http\Controllers\Backend\ClassroomsController;
 use App\Http\Controllers\Backend\DefaultController;
@@ -62,6 +63,7 @@ Route::get('/subjectList/{majorId}', function ($majorId) {
 
 Route::get('/studentgrades/filter', [StudentGradesController::class, 'filterStudents'])->name('studentgrades.filter');
 Route::post('/std_register/', [RegisterController::class, 'RegisterStore'])->name('register.store');
+Route::get('/student_register/', [StdRegisterController::class, 'RegisterForm'])->name('stdRegister');
 
 Auth::routes();
 

@@ -17,15 +17,6 @@ class StudentsController extends Controller
 {
     public function StudentsView()
     {
-        // $studentData = DB::table('students')
-        //     ->join('users', 'students.user_id', 'users.id')
-        //     ->join('majors', 'students.major_id', 'majors.id')
-        //     ->join('generations', 'students.gen_id', 'generations.id')
-        //     ->select('students.*', 'users.fname_lo', 'users.lname_lo', 'users.fname_en', 'users.lname_en', 'users.profile', 'users.created_at', 'generations.gen', 'majors.major')
-        //     ->get();
-
-        // $studentData = Student::with('user', 'major', 'generation')->get();
-
         $studentData = Student::where('deleted', false)->get();
         $trash = Student::where('deleted', true)->count();
 
@@ -409,21 +400,5 @@ class StudentsController extends Controller
         );
 
         return redirect()->back()->with($notification);
-
-        // $request->validate([
-        //     'file' => 'required|mimes:xlsx,csv,xls'
-        // ]);
-
-        // try {
-        //     Excel::import(new StudentsImport, $request->file('file'));
-        //     $notification = array(
-        //         'message' => 'Import ຂໍ້ມູນນັກສຶກສາສຳເລັດ',
-        //         'alert-type' => 'success'
-        //     );
-
-        //     return redirect()->back()->with($notification);
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with('error', 'Error importing students: ' . $e->getMessage());
-        // }
     }
 }

@@ -103,7 +103,7 @@
                                             style="background: #3051d3 !important; border: none; border-radius: 10px;">ເຂົ້າສູ່ລະບົບ</button>
                                     </div>
                                     <div class="mt-4 text-center">
-                                        <a href="{{ route('register') }}" class="text-muted"><i
+                                        <a href="{{ route('stdRegister') }}" class="text-muted"><i
                                                 class="mdi mdi-account-circle mr-1"></i> ສ້າງບັນຊີຜູ້ໃຊ້</a>
                                     </div>
                                 </form>
